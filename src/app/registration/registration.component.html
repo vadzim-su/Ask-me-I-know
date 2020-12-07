@@ -1,0 +1,120 @@
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0 reg">
+  <div class="container">
+    <div class="card reg__card">
+      <div class="row no-gutters">
+        <div class="col-md-6 d-flex reg__picture">
+          <img
+            src="../../assets/img/reg_img.jpg"
+            alt="login"
+            class="reg__img"
+          />
+        </div>
+        <div class="col-md-6">
+          <div class="card-body reg__info">
+            <div class="d-flex">
+              <img
+                src="../../assets/img/icon.ico"
+                alt="logo"
+                class="reg__logo"
+              />
+              <h1 class="reg__title">Ask me, I know</h1>
+            </div>
+            <p class="reg__description">Sign up your account</p>
+            <form action="#!" class="reg__form">
+              <div class="form-group reg__input">
+                <label for="username" class="col-form-label"
+                  >Enter username
+                  <span class="reg__validation"
+                    >(use all letters and numbers, '-' or '_', min 3
+                    chars)</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  class="form-control"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="form-group reg__input">
+                <label for="email" class="col-form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="Email address"
+                />
+              </div>
+              <div class="form-group mb-4 reg__input">
+                <label for="password" class="col-form-label"
+                  >Enter password
+                  <span class="reg__validation"
+                    >(use all letters and numbers, min 5 chars)</span
+                  >
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="********"
+                />
+              </div>
+              <div class="form-group mb-4 reg__input">
+                <label for="passwordConfirm" class="col-form-label"
+                  >Confirm your password</label
+                >
+                <input
+                  type="password"
+                  name="passwordConfirm"
+                  id="passwordConfirm"
+                  class="form-control"
+                  placeholder="********"
+                />
+              </div>
+              <!-- <span id="errorText"></span> -->
+              <input
+                name="reg"
+                id="reg"
+                class="btn btn-danger btn-block login-btn mb-4 reg__button"
+                type="button"
+                value="Registrate"
+              />
+            </form>
+
+            <div class="reg__buttons d-flex justify-content-center">
+              <button class="reg__social btn btn-outline-light">
+                <img
+                  class="reg__icon"
+                  src="../../assets/img/google.svg"
+                  alt=""
+                />
+              </button>
+              <button class="reg__social btn btn-outline-light">
+                <img
+                  class="reg__icon"
+                  src="../../assets/img/github.svg"
+                  alt=""
+                />
+              </button>
+              <button class="reg__social btn btn-outline-light">
+                <img
+                  class="reg__icon"
+                  src="../../assets/img/phone.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+
+            <p class="reg__footer">
+              Do you have account?
+              <span class="reg__login">Sign in</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
