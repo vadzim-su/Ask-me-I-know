@@ -20,7 +20,18 @@
               <h1 class="reg__title">Ask me, I know</h1>
             </div>
             <p class="reg__description">Sign up your account</p>
-            <form action="#!" class="reg__form">
+            <form
+              class="reg__form"
+              (submit)="
+                isValidEnteredData(
+                  $event,
+                  username.value,
+                  email.value,
+                  password.value,
+                  confirmedPassword.value
+                )
+              "
+            >
               <div class="form-group reg__input">
                 <label for="username" class="col-form-label"
                   >Enter username
@@ -35,6 +46,7 @@
                   id="username"
                   class="form-control"
                   placeholder="Username"
+                  #username
                 />
               </div>
               <div class="form-group reg__input">
@@ -45,6 +57,8 @@
                   id="email"
                   class="form-control"
                   placeholder="Email address"
+                  autocomplete="false"
+                  #email
                 />
               </div>
               <div class="form-group mb-4 reg__input">
@@ -60,6 +74,8 @@
                   id="password"
                   class="form-control"
                   placeholder="********"
+                  autocomplete="false"
+                  #password
                 />
               </div>
               <div class="form-group mb-4 reg__input">
@@ -72,16 +88,19 @@
                   id="passwordConfirm"
                   class="form-control"
                   placeholder="********"
+                  autocomplete="false"
+                  #confirmedPassword
                 />
               </div>
-              <!-- <span id="errorText"></span> -->
+              <span class="reg__warning">{{ warningText }}</span>
+              <!-- routerLink="/home" -->
               <input
-                routerLink="/home"
                 name="reg"
                 id="reg"
                 class="btn btn-danger btn-block login-btn mb-4 reg__button"
-                type="button"
+                type="submit"
                 value="Registrate"
+                autocomplete="false"
               />
             </form>
 

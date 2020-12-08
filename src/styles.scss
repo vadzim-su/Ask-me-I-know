@@ -16,7 +16,7 @@ html {
     font-weight: bold;
     line-height: 20px;
     color: #fff;
-    margin-top: 30px;
+    margin-top: 40px;
   }
 
   &__card {
@@ -94,5 +94,13 @@ html {
 
   &__input {
     margin-bottom: 0.8rem !important;
+  }
+
+  &__warning {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: red;
   }
 }

@@ -19,9 +19,12 @@
               />
               <h1 class="login__title">Ask me, I know</h1>
             </div>
-            <p class="login__description">Sign into your account</p>
-            <form action="#!" class="login__form">
-              <div class="form-group">
+            <p class="login__description">Log into your account</p>
+            <form
+              class="login__form"
+              (submit)="getInfo($event, email.value, password.value)"
+            >
+              <div class="form-group reg__input">
                 <label for="email" class="sr-only">Email</label>
                 <input
                   type="email"
@@ -29,9 +32,11 @@
                   id="email"
                   class="form-control"
                   placeholder="Email address"
+                  autocomplete="false"
+                  #email
                 />
               </div>
-              <div class="form-group mb-4">
+              <div class="form-group mb-4 reg__input">
                 <label for="password" class="sr-only">Password</label>
                 <input
                   type="password"
@@ -39,14 +44,16 @@
                   id="password"
                   class="form-control"
                   placeholder="***********"
+                  autocomplete="false"
+                  #password
                 />
               </div>
-              <!-- <span id="errorText"></span> -->
+              <span class="login__warning">{{ warningText }}</span>
+              <!-- routerLink="home" -->
               <input
-                routerLink="home"
                 name="log in"
                 class="btn btn-block btn-danger login-btn mb-4 login__button"
-                type="button"
+                type="submit"
                 value="Log in"
               />
             </form>
