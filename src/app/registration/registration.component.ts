@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -7,36 +15,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
   warningText: string;
+  userInfoControl: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private auth: AngularFireAuth,
+    private router: Router
+  ) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    this.userInfoControl = this.fb.group({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9_-]{3,}/),
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,3}$/),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9]{5,}/),
+      ]),
+      passwordConfirm: new FormControl('', [Validators.required]),
+    });
+  }
 
-  ngOnInit(): void {}
-
-  isValidEnteredData(
-    $event,
-    username,
-    email,
-    password,
-    confirmedPassword
-  ): void {
-    $event.preventDefault();
-
-    if (/^[a-zA-Z0-9_-]{3,}/.test(username)) {
-      if (/^[a-zA-Z0-9._-]+@[a-z]+\.[a-z]{2,3}$/.test(email)) {
-        if (/^[a-zA-Z0-9]{5,}/.test(password)) {
-          if (password === confirmedPassword) {
-            location.href = '/home';
-          } else {
-            this.warningText = 'Entered passwords are not the same';
-          }
-        } else {
-          this.warningText = 'Your password is not valid';
-        }
+  addNewUser() {
+    const { email, password } = this.userInfoControl.value;
+    if (
+      this.userInfoControl.value['password'] ===
+      this.userInfoControl.value['passwordConfirm']
+    )
+      if (this.userInfoControl.value['password'].length >= 6) {
+        this.auth
+          .createUserWithEmailAndPassword(email, password)
+          .then(() => this.router.navigate(['']));
       } else {
-        this.warningText = 'Your email is not valid';
+        this.warningText = 'Your password should be 6-char';
       }
-    } else {
-      this.warningText = 'Your username is not valid';
+    else {
+      this.warningText = 'Entered passwords are not the same';
     }
   }
 }

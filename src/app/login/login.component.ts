@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +16,28 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   warningText: string;
 
-  constructor() {}
+  loginControl: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AngularFireAuth,
+    private router: Router
+  ) {}
 
-  getInfo($event, email, password): void {
-    $event.preventDefault();
-    if (email) {
-      if (password) {
-        location.href = '/home';
-      } else {
-        this.warningText = 'Enter your password';
-      }
-    } else {
-      this.warningText = 'Enter your email';
-    }
+  ngOnInit(): void {
+    this.loginControl = this.fb.group({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
+  }
+
+  loginUser() {
+    const { email, password } = this.loginControl.value;
+    this.auth.signInWithEmailAndPassword(email, password).then(() => {
+      this.router.navigate(['']);
+    });
+    // console.log(this.loginControl.value);
+    // location.href = '';
+    // this.warningText = 'User with such email is not exist';
   }
 }

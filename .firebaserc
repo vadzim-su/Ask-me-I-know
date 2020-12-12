@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ask-me-i-know": {
+      "hosting": {
+        "ang-stack": [
+          "ask-me-i-know"
+        ]
+      }
+    }
+  }
+}

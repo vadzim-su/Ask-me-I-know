@@ -22,15 +22,8 @@
             <p class="reg__description">Sign up your account</p>
             <form
               class="reg__form"
-              (submit)="
-                isValidEnteredData(
-                  $event,
-                  username.value,
-                  email.value,
-                  password.value,
-                  confirmedPassword.value
-                )
-              "
+              [formGroup]="userInfoControl"
+              (ngSubmit)="addNewUser()"
             >
               <div class="form-group reg__input">
                 <label for="username" class="col-form-label"
@@ -46,7 +39,7 @@
                   id="username"
                   class="form-control"
                   placeholder="Username"
-                  #username
+                  formControlName="username"
                 />
               </div>
               <div class="form-group reg__input">
@@ -58,14 +51,14 @@
                   class="form-control"
                   placeholder="Email address"
                   autocomplete="false"
-                  #email
+                  formControlName="email"
                 />
               </div>
               <div class="form-group mb-4 reg__input">
                 <label for="password" class="col-form-label"
                   >Enter password
                   <span class="reg__validation"
-                    >(use all letters and numbers, min 5 chars)</span
+                    >(use all letters and numbers, min 6 chars)</span
                   >
                 </label>
                 <input
@@ -75,12 +68,15 @@
                   class="form-control"
                   placeholder="********"
                   autocomplete="false"
-                  #password
+                  formControlName="password"
                 />
               </div>
               <div class="form-group mb-4 reg__input">
                 <label for="passwordConfirm" class="col-form-label"
-                  >Confirm your password</label
+                  >Confirm your password
+                  <span class="reg__validation"
+                    >(entered passwords should be the same)</span
+                  ></label
                 >
                 <input
                   type="password"
@@ -89,11 +85,10 @@
                   class="form-control"
                   placeholder="********"
                   autocomplete="false"
-                  #confirmedPassword
+                  formControlName="passwordConfirm"
                 />
               </div>
               <span class="reg__warning">{{ warningText }}</span>
-              <!-- routerLink="/home" -->
               <input
                 name="reg"
                 id="reg"
@@ -101,6 +96,7 @@
                 type="submit"
                 value="Registrate"
                 autocomplete="false"
+                [disabled]="userInfoControl.invalid"
               />
             </form>
 

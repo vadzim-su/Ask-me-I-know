@@ -22,7 +22,8 @@
             <p class="login__description">Log into your account</p>
             <form
               class="login__form"
-              (submit)="getInfo($event, email.value, password.value)"
+              [formGroup]="loginControl"
+              (ngSubmit)="loginUser()"
             >
               <div class="form-group reg__input">
                 <label for="email" class="sr-only">Email</label>
@@ -33,7 +34,7 @@
                   class="form-control"
                   placeholder="Email address"
                   autocomplete="false"
-                  #email
+                  formControlName="email"
                 />
               </div>
               <div class="form-group mb-4 reg__input">
@@ -45,16 +46,17 @@
                   class="form-control"
                   placeholder="***********"
                   autocomplete="false"
-                  #password
+                  formControlName="password"
                 />
               </div>
               <span class="login__warning">{{ warningText }}</span>
-              <!-- routerLink="home" -->
+
               <input
                 name="log in"
                 class="btn btn-block btn-danger login-btn mb-4 login__button"
                 type="submit"
                 value="Log in"
+                [disabled]="loginControl.invalid"
               />
             </form>
             <div class="login__buttons d-flex justify-content-center">
@@ -82,7 +84,7 @@
             </div>
             <p class="login__footer">
               Don't have an account?
-              <span routerLink="registration" class="login__reg"
+              <span routerLink="../registration" class="login__reg"
                 >Register here</span
               >
             </p>
