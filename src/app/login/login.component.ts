@@ -1,28 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  loginControl: FormGroup;
   warningText: string;
 
-  loginControl: FormGroup;
-
-  constructor(
-    private fb: FormBuilder,
-    private auth: AngularFireAuth,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.loginControl = this.fb.group({
@@ -32,12 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    const { email, password } = this.loginControl.value;
-    this.auth.signInWithEmailAndPassword(email, password).then(() => {
-      this.router.navigate(['']);
-    });
-    // console.log(this.loginControl.value);
-    // location.href = '';
-    // this.warningText = 'User with such email is not exist';
+    this.authService.loginUser(this.loginControl);
   }
 }

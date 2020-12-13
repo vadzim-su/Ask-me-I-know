@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

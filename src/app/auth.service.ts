@@ -1,24 +1,38 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // user: Observable<firebase.User>;
-  // constructor(private firebaseAuth: AngularFireAuth) {
-  //   this.user = firebaseAuth.authState;
-  // }
-  // signup(email: string, password: string) {
-  //   this.firebaseAuth.auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then((value) => {
-  //       console.log('Success!', value);
-  //     })
-  //     .catch((err) => {
-  //       console.log('Something went wrong:', err.message);
-  //     });
-  // }
+  warningText: string;
+
+  constructor(private auth: AngularFireAuth, private router: Router) {}
+
+  addNewUser(userInfoControl) {
+    const { email, password } = userInfoControl.value;
+    if (
+      userInfoControl.value['password'] ===
+      userInfoControl.value['passwordConfirm']
+    )
+      if (userInfoControl.value['password'].length >= 6) {
+        this.auth
+          .createUserWithEmailAndPassword(email, password)
+          .then(() => this.router.navigate(['']));
+      } else {
+        this.warningText = 'Your password should be 6-char';
+      }
+    else {
+      this.warningText = 'Entered passwords are not the same';
+    }
+  }
+
+  loginUser(loginControl) {
+    const { email, password } = loginControl.value;
+    this.auth.signInWithEmailAndPassword(email, password).then(() => {
+      this.router.navigate(['']);
+    });
+    // this.warningText = 'User with such email is not exist';
+  }
 }

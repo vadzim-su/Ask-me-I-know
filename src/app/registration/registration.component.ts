@@ -1,26 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
-export class RegistrationComponent implements OnInit {
-  warningText: string;
+export class RegistrationComponent {
   userInfoControl: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    private auth: AngularFireAuth,
-    private router: Router
-  ) {}
+  warningText: string;
+
+  constructor(private fb: FormBuilder, public authService: AuthService) {}
 
   ngOnInit(): void {
     this.userInfoControl = this.fb.group({
@@ -41,20 +37,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   addNewUser() {
-    const { email, password } = this.userInfoControl.value;
-    if (
-      this.userInfoControl.value['password'] ===
-      this.userInfoControl.value['passwordConfirm']
-    )
-      if (this.userInfoControl.value['password'].length >= 6) {
-        this.auth
-          .createUserWithEmailAndPassword(email, password)
-          .then(() => this.router.navigate(['']));
-      } else {
-        this.warningText = 'Your password should be 6-char';
-      }
-    else {
-      this.warningText = 'Entered passwords are not the same';
-    }
+    this.authService.addNewUser(this.userInfoControl);
   }
 }
