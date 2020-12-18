@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -16,7 +17,11 @@ export class RegistrationComponent {
   userInfoControl: FormGroup;
   warningText: string;
 
-  constructor(private fb: FormBuilder, public authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userInfoControl = this.fb.group({
@@ -37,6 +42,55 @@ export class RegistrationComponent {
   }
 
   addNewUser() {
-    this.authService.addNewUser(this.userInfoControl);
+    if (
+      this.userInfoControl.value['password'] ===
+      this.userInfoControl.value['passwordConfirm']
+    )
+      if (this.userInfoControl.value['password'].length >= 6) {
+        this.authService
+          .addNewUserService(this.userInfoControl.value)
+          .then(() => this.router.navigate(['']))
+          .catch((data) => {
+            this.warningText = data?.message || 'server error';
+          });
+      } else {
+        this.warningText = 'Your password should be 6-char';
+      }
+    else {
+      this.warningText = 'Entered passwords are not the same';
+    }
+  }
+
+  loginWithGoogle() {
+    this.authService
+      .loginWithGoogleService()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
+  }
+
+  loginWithFacebook() {
+    this.authService
+      .loginWithFacebookService()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
+  }
+
+  loginWithGithub() {
+    this.authService
+      .loginWithGithubService()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
   }
 }

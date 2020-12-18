@@ -101,24 +101,33 @@
             </form>
 
             <div class="reg__buttons d-flex justify-content-center">
-              <button class="reg__social btn btn-outline-light">
+              <button
+                class="reg__social btn btn-outline-light"
+                (click)="loginWithGoogle()"
+              >
                 <img
                   class="reg__icon"
                   src="../../assets/img/google.svg"
                   alt=""
                 />
               </button>
-              <button class="reg__social btn btn-outline-light">
+              <button
+                class="reg__social btn btn-outline-light"
+                (click)="loginWithFacebook()"
+              >
                 <img
                   class="reg__icon"
-                  src="../../assets/img/github.svg"
+                  src="../../assets/img/facebook.svg"
                   alt=""
                 />
               </button>
-              <button class="reg__social btn btn-outline-light">
+              <button
+                class="reg__social btn btn-outline-light"
+                (click)="loginWithGithub()"
+              >
                 <img
                   class="reg__icon"
-                  src="../../assets/img/phone.svg"
+                  src="../../assets/img/github.svg"
                   alt=""
                 />
               </button>

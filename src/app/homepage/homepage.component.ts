@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  constructor(private auth: AngularFireAuth, private router: Router) {}
+  constructor(private router: Router, public authService: AuthService) {}
+
   ngOnInit(): void {}
 
   onLogout() {
-    this.auth.signOut().then(() => {
+    this.authService.signOut().then(() => {
       this.router.navigate(['login']);
     });
   }

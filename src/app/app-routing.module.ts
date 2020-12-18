@@ -9,6 +9,7 @@ import {
 } from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+// const redirectAuthorizedToLogin = () => redirectAuthorizedTo(['login']);
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import firebase from 'firebase/app';
+// import User from 'firebase';
 
 @Injectable({
   providedIn: 'root',
@@ -10,29 +12,36 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth, private router: Router) {}
 
-  addNewUser(userInfoControl) {
-    const { email, password } = userInfoControl.value;
-    if (
-      userInfoControl.value['password'] ===
-      userInfoControl.value['passwordConfirm']
-    )
-      if (userInfoControl.value['password'].length >= 6) {
-        this.auth
-          .createUserWithEmailAndPassword(email, password)
-          .then(() => this.router.navigate(['']));
-      } else {
-        this.warningText = 'Your password should be 6-char';
-      }
-    else {
-      this.warningText = 'Entered passwords are not the same';
-    }
+  addNewUserService(userInfoControl) {
+    return this.auth.createUserWithEmailAndPassword(
+      userInfoControl['email'],
+      userInfoControl['password']
+    );
   }
 
-  loginUser(loginControl) {
-    const { email, password } = loginControl.value;
-    this.auth.signInWithEmailAndPassword(email, password).then(() => {
-      this.router.navigate(['']);
-    });
-    // this.warningText = 'User with such email is not exist';
+  loginWithGoogleService() {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+  }
+
+  loginWithFacebookService() {
+    let provider = new firebase.auth.FacebookAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+  }
+
+  loginWithGithubService() {
+    let provider = new firebase.auth.GithubAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+  }
+
+  loginUserService(loginControl) {
+    return this.auth.signInWithEmailAndPassword(
+      loginControl['email'],
+      loginControl['password']
+    );
+  }
+
+  signOut() {
+    return this.auth.signOut();
   }
 }

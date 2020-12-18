@@ -59,25 +59,34 @@
                 [disabled]="loginControl.invalid"
               />
             </form>
-            <div class="login__buttons d-flex justify-content-center">
-              <button class="login__social btn btn-outline-light">
+            <div class="reg__buttons d-flex justify-content-center">
+              <button
+                class="reg__social btn btn-outline-light"
+                (click)="loginWithGoogle()"
+              >
                 <img
-                  class="login__icon"
+                  class="reg__icon"
                   src="../../assets/img/google.svg"
                   alt=""
                 />
               </button>
-              <button class="login__social btn btn-outline-light">
+              <button
+                class="reg__social btn btn-outline-light"
+                (click)="loginWithFacebook()"
+              >
                 <img
-                  class="login__icon"
-                  src="../../assets/img/github.svg"
+                  class="reg__icon"
+                  src="../../assets/img/facebook.svg"
                   alt=""
                 />
               </button>
-              <button class="login__social btn btn-outline-light">
+              <button
+                class="reg__social btn btn-outline-light"
+                (click)="loginWithGithub()"
+              >
                 <img
-                  class="login__icon"
-                  src="../../assets/img/phone.svg"
+                  class="reg__icon"
+                  src="../../assets/img/github.svg"
                   alt=""
                 />
               </button>

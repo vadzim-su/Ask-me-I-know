@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -16,7 +17,11 @@ export class LoginComponent {
   loginControl: FormGroup;
   warningText: string;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginControl = this.fb.group({
@@ -26,6 +31,46 @@ export class LoginComponent {
   }
 
   loginUser() {
-    this.authService.loginUser(this.loginControl);
+    this.authService
+      .loginUserService(this.loginControl.value)
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
+  }
+
+  loginWithGoogle() {
+    this.authService
+      .loginWithGoogleService()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
+  }
+
+  loginWithFacebook() {
+    this.authService
+      .loginWithFacebookService()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
+  }
+
+  loginWithGithub() {
+    this.authService
+      .loginWithGithubService()
+      .then(() => {
+        this.router.navigate(['']);
+      })
+      .catch((data) => {
+        this.warningText = data?.message || 'server error';
+      });
   }
 }
