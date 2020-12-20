@@ -105,3 +105,14 @@ html {
     color: red;
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}

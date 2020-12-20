@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
-// import User from 'firebase';
+import 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -43,5 +43,9 @@ export class AuthService {
 
   signOut() {
     return this.auth.signOut();
+  }
+
+  getDatabaseService() {
+    return firebase.database().ref('/categories').get();
   }
 }
