@@ -48,4 +48,11 @@ export class AuthService {
   getDatabaseService() {
     return firebase.database().ref('/categories').get();
   }
+
+  async getCategoriesService() {
+    const response = await fetch(
+      'https://vadzim-su.github.io/Ask-me-I-know/src/app/homepage/categories.json'
+    );
+    return response;
+  }
 }
