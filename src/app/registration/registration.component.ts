@@ -41,7 +41,7 @@ export class RegistrationComponent {
     });
   }
 
-  addNewUser() {
+  addNewUser(): void {
     if (
       this.userInfoControl.value['password'] ===
       this.userInfoControl.value['passwordConfirm']
@@ -61,7 +61,7 @@ export class RegistrationComponent {
     }
   }
 
-  loginWithGoogle() {
+  loginWithGoogle(): void {
     this.authService
       .loginWithGoogleService()
       .then(() => {
@@ -72,7 +72,7 @@ export class RegistrationComponent {
       });
   }
 
-  loginWithFacebook() {
+  loginWithFacebook(): void {
     this.authService
       .loginWithFacebookService()
       .then(() => {
@@ -83,7 +83,7 @@ export class RegistrationComponent {
       });
   }
 
-  loginWithGithub() {
+  loginWithGithub(): void {
     this.authService
       .loginWithGithubService()
       .then(() => {

@@ -12,47 +12,47 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth, private router: Router) {}
 
-  addNewUserService(userInfoControl) {
+  addNewUserService(userInfoControl): any {
     return this.auth.createUserWithEmailAndPassword(
       userInfoControl['email'],
       userInfoControl['password']
     );
   }
 
-  loginWithGoogleService() {
+  loginWithGoogleService(): any {
     let provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   }
 
-  loginWithFacebookService() {
+  loginWithFacebookService(): any {
     let provider = new firebase.auth.FacebookAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   }
 
-  loginWithGithubService() {
+  loginWithGithubService(): any {
     let provider = new firebase.auth.GithubAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   }
 
-  loginUserService(loginControl) {
+  loginUserService(loginControl): any {
     return this.auth.signInWithEmailAndPassword(
       loginControl['email'],
       loginControl['password']
     );
   }
 
-  signOut() {
+  signOut(): any {
     return this.auth.signOut();
   }
 
-  getDatabaseService() {
-    return firebase.database().ref('/categories').get();
-  }
+  // getDatabaseService() {
+  //   return firebase.database().ref('/categories').get();
+  // }
 
-  async getCategoriesService() {
-    const response = await fetch(
-      'https://vadzim-su.github.io/Ask-me-I-know/src/app/homepage/categories.json'
-    );
-    return response;
-  }
+  // async getCategoriesService() {
+  //   const response = await fetch(
+  //     'https://vadzim-su.github.io/Ask-me-I-know/src/app/homepage/categories.json'
+  //   );
+  //   return response;
+  // }
 }

@@ -30,7 +30,7 @@ export class LoginComponent {
     });
   }
 
-  loginUser() {
+  loginUser(): void {
     this.authService
       .loginUserService(this.loginControl.value)
       .then(() => {
@@ -41,7 +41,7 @@ export class LoginComponent {
       });
   }
 
-  loginWithGoogle() {
+  loginWithGoogle(): void {
     this.authService
       .loginWithGoogleService()
       .then(() => {
@@ -52,7 +52,7 @@ export class LoginComponent {
       });
   }
 
-  loginWithFacebook() {
+  loginWithFacebook(): void {
     this.authService
       .loginWithFacebookService()
       .then(() => {
@@ -63,7 +63,7 @@ export class LoginComponent {
       });
   }
 
-  loginWithGithub() {
+  loginWithGithub(): void {
     this.authService
       .loginWithGithubService()
       .then(() => {

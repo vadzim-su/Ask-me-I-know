@@ -27,7 +27,7 @@ export class QuestionFormComponent implements OnInit {
     });
   }
 
-  addQuestion() {
+  addQuestion(): void {
     $('#exampleModal').modal('toggle');
     console.log(this.question.value);
   }
