@@ -1,4 +1,4 @@
-<main class="d-flex min-vh-100 py-3 py-md-0 home">
+<main class="min-vh-100 py-3 py-md-0 home">
   <div class="container">
     <nav
       class="d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-light bg-light"
@@ -23,8 +23,7 @@
           src="../../assets/img/icon.ico"
           alt=""
         />
-        <!-- <span class="navbar-email">123@mail.ru</span> -->
-        <span class="navbar-email">{{ loginControl }}</span>
+        <span class="navbar-email">{{ userEmail }}</span>
         <div class="btn-group">
           <button
             type="button"
@@ -49,18 +48,17 @@
     <div class="dropdown-divider"></div>
 
     <nav
-      class="d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-light bg-light"
+      class="d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-light bg-light mb-3"
     >
       <button class="btn btn-outline-danger">Filter</button>
       <button class="btn btn-outline-danger">Sort</button>
       <button class="btn btn-outline-danger">Settings</button>
     </nav>
+    <div class="questions">
+      <app-single-question class="d-flex flex-wrap"></app-single-question>
+    </div>
   </div>
 </main>
 
 <!-- Modal -->
 <app-question-form></app-question-form>
-
-<!-- <button (click)="getCategories()">get categories</button> -->
-
-<!-- title, date, category, adm. panel (resolve/delete question) -->

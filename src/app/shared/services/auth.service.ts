@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -8,9 +7,13 @@ import 'firebase/database';
   providedIn: 'root',
 })
 export class AuthService {
-  warningText: string;
+  userEmail: string;
 
-  constructor(private auth: AngularFireAuth, private router: Router) {}
+  constructor(private auth: AngularFireAuth) {
+    this.auth.authState.subscribe((user) => {
+      this.userEmail = user?.email;
+    });
+  }
 
   addNewUserService(userInfoControl): any {
     return this.auth.createUserWithEmailAndPassword(
@@ -19,17 +22,17 @@ export class AuthService {
     );
   }
 
-  loginWithGoogleService(): any {
+  loginWithGoogleService(): Promise<firebase.auth.UserCredential> {
     let provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   }
 
-  loginWithFacebookService(): any {
+  loginWithFacebookService(): Promise<firebase.auth.UserCredential> {
     let provider = new firebase.auth.FacebookAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   }
 
-  loginWithGithubService(): any {
+  loginWithGithubService(): Promise<firebase.auth.UserCredential> {
     let provider = new firebase.auth.GithubAuthProvider();
     return firebase.auth().signInWithPopup(provider);
   }
@@ -44,15 +47,4 @@ export class AuthService {
   signOut(): any {
     return this.auth.signOut();
   }
-
-  // getDatabaseService() {
-  //   return firebase.database().ref('/categories').get();
-  // }
-
-  // async getCategoriesService() {
-  //   const response = await fetch(
-  //     'https://vadzim-su.github.io/Ask-me-I-know/src/app/homepage/categories.json'
-  //   );
-  //   return response;
-  // }
 }

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../shared/services/auth.service';
+import { QuestionService } from '../shared/services/question.service';
 declare var $: any;
 
 @Component({
@@ -14,21 +10,42 @@ declare var $: any;
   styleUrls: ['./question-form.component.scss'],
 })
 export class QuestionFormComponent implements OnInit {
-  question: FormGroup;
-  constructor(private fb: FormBuilder, private db: AngularFireDatabase) {}
+  userEmail: string;
+  newQuestion: FormGroup;
+  categories: any;
+  allQuestions: any;
 
-  categories = ['Frontend', '.Net', 'Java', 'Salesforce', 'PHP'];
+  constructor(
+    private fb: FormBuilder,
+    public authService: AuthService,
+    public questionService: QuestionService
+  ) {
+    this.newQuestion = this.fb.group({
+      title: ['', [Validators.required]],
+      text: ['', [Validators.required]],
+      tags: fb.array(['', [Validators.required]]),
+    });
+  }
 
   ngOnInit(): void {
-    this.question = this.fb.group({
-      title: new FormControl('', [Validators.required]),
-      text: new FormControl('', [Validators.required]),
-      tag: new FormControl('', [Validators.required]),
-    });
+    this.userEmail = this.authService.userEmail;
+    this.questionService
+      .getCategories()
+      .subscribe((data: Array<string>) => (this.categories = data));
   }
 
   addQuestion(): void {
     $('#exampleModal').modal('toggle');
-    console.log(this.question.value);
+    this.newQuestion.value.date = new Date();
+    this.newQuestion.value.id = +this.newQuestion.value.date;
+    this.newQuestion.value.author = this.userEmail;
+    console.log(this.newQuestion.value);
+    this.newQuestion.reset();
+  }
+
+  checkValues(event) {
+    event.target.checked
+      ? this.newQuestion.value['tags'].push(event.target.value)
+      : null;
   }
 }

@@ -21,7 +21,7 @@
       </div>
       <form
         class="modal-body"
-        [formGroup]="question"
+        [formGroup]="newQuestion"
         (ngSubmit)="addQuestion()"
       >
         <div class="form-group row">
@@ -58,15 +58,17 @@
           <div class="col-sm-10">
             <div
               class="form-check"
-              *ngFor="let category of categories; let i = index"
+              *ngFor="let category of categories?.categories; let i = index"
             >
               <input
+                formArrayName="tags"
                 class="form-check-input"
                 type="checkbox"
+                name="category"
                 id="inlineCheckbox{{ i + 1 }}"
-                value="option{{ i + 1 }}"
+                value="{{ category }}"
+                (change)="checkValues($event)"
               />
-              <!-- formControlName="tag" -->
               <label class="form-check-label" for="inlineCheckbox{{ i + 1 }}">{{
                 category
               }}</label>
