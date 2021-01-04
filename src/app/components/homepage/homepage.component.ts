@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
+import Question from '../../models/question.model';
+import { AuthService } from '../../shared/services/auth.service';
+import { QuestionService } from '../../shared/services/question.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,11 +10,17 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  constructor(private router: Router, public authService: AuthService) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    public questionService: QuestionService
+  ) {}
   userEmail: string;
 
   ngOnInit(): void {
-    this.userEmail = this.authService.userEmail;
+    this.authService.getAuthState().subscribe((useremail) => {
+      this.userEmail = useremail;
+    });
   }
 
   onLogout(): void {

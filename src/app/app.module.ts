@@ -8,20 +8,17 @@ import { AuthService } from './shared/services/auth.service';
 import { QuestionService } from './shared/services/question.service';
 
 import { AngularFireModule } from '@angular/fire';
-// import  AngularFirestore,
-//   AngularFirestoreDocument,
-//   AngularFirestoreCollection,
-// '@angular/fire/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { QuestionFormComponent } from './question-form/question-form.component';
-import { SingleQuestionComponent } from './single-question/single-question.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { QuestionFormComponent } from './components/question-form/question-form.component';
+import { SingleQuestionComponent } from './components/single-question/single-question.component';
+import { QuestionListComponent } from './components/question-list/question-list.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +28,7 @@ import { SingleQuestionComponent } from './single-question/single-question.compo
     HomepageComponent,
     QuestionFormComponent,
     SingleQuestionComponent,
+    QuestionListComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +36,8 @@ import { SingleQuestionComponent } from './single-question/single-question.compo
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     NgbModule,
     HttpClientModule,
-    // AngularFirestore,
-    // AngularFirestoreDocument,
-    // AngularFirestoreCollection,
   ],
   providers: [AuthService, QuestionService],
   bootstrap: [AppComponent],

@@ -5,7 +5,7 @@
     >
       <div class="d-flex align-items-center col-sm">
         <img class="navbar-img" src="../../assets/img/icon.ico" />
-        <a class="navbar-brand" href="#">Ask me I know</a>
+        <a class="navbar-brand" routerLink="/">Ask me I know</a>
       </div>
 
       <div class="col-sm d-flex justify-content-end align-items-center">
@@ -54,9 +54,20 @@
       <button class="btn btn-outline-danger">Sort</button>
       <button class="btn btn-outline-danger">Settings</button>
     </nav>
-    <div class="questions">
-      <app-single-question class="d-flex flex-wrap"></app-single-question>
-    </div>
+
+    <app-question-list
+      class="d-flex flex-wrap align-items-stretch"
+    ></app-question-list>
+  </div>
+
+  <div class="home__add">
+    <img
+      class="home__plus"
+      src="../../assets/img/add.svg"
+      data-toggle="modal"
+      data-target="#exampleModal"
+      alt=""
+    />
   </div>
 </main>
 

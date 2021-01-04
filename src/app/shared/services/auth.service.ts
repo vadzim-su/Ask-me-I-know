@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import 'firebase/database';
+import { map } from 'rxjs/operators';
+import 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +43,15 @@ export class AuthService {
     return this.auth.signInWithEmailAndPassword(
       loginControl['email'],
       loginControl['password']
+    );
+  }
+
+  getAuthState() {
+    return this.auth.authState.pipe(
+      map((user) => {
+        this.userEmail = user?.email;
+        return this.userEmail;
+      })
     );
   }
 

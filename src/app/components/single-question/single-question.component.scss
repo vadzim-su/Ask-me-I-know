@@ -1,0 +1,41 @@
+.card {
+  margin-bottom: 10px;
+  height: 100%;
+  cursor: pointer;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.4)
+    ),
+    url("../../../assets/img/not-4.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+
+  &-date,
+  &-user {
+    color: #6c757d;
+    font-size: 11px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-category {
+    display: block;
+    margin-left: 5px;
+    font-size: 12px;
+    background-color: #e76384;
+    color: #ffffff;
+    outline: none;
+  }
+
+  &-text {
+    font-size: 14px;
+    overflow: hidden;
+    max-height: 200px;
+
+    background: linear-gradient(180deg, #000000 80%, #ccccccbb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #000000;
+  }
+}

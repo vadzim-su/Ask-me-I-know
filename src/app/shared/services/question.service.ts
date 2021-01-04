@@ -1,32 +1,36 @@
-import { HttpClient } from '@angular/common/http';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection,
-} from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { DocumentData, QuerySnapshot } from '@angular/fire/firestore';
 import Question from '../../models/question.model';
-import { Observable } from 'rxjs';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionService {
-  questionCollection: AngularFirestoreCollection<Question>;
-  questions: Observable<Question[]>;
-  // categories: Array<string>;
-  categories: any;
+  allQuestions: Question[];
 
-  constructor(private http: HttpClient, private afs: AngularFirestore) {
-    this.questions = this.afs.collection('questions').valueChanges();
-  }
+  constructor(private http: HttpClient) {}
 
-  getCategories() {
-    this.categories = this.http.get('assets/data/categories.json');
-    return this.categories;
-  }
   getAllQuestions() {
-    return this.questions;
+    return firebase
+      .firestore()
+      .collection('questions')
+      .get()
+      .then((response: QuerySnapshot<DocumentData>) => {
+        return response.docs.map((question) => {
+          const savedQuestion = question.data();
+          return { ...savedQuestion, id: question.id } as Question;
+        });
+      });
+  }
+
+  addNewQuestion(question) {
+    return firebase
+      .firestore()
+      .collection('questions')
+      .add(question)
+      .then((response) => response);
   }
 }
