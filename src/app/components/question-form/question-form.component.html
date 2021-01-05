@@ -65,6 +65,7 @@
                 id="inlineCheckbox{{ i + 1 }}"
                 value="{{ tag }}"
                 (change)="checkValues($event)"
+                [checked]="unchecked"
               />
               <label class="form-check-label" for="inlineCheckbox{{ i + 1 }}">{{
                 tag
@@ -74,12 +75,20 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            [disabled]="isLoading"
+          >
             Cancel
           </button>
-          <button type="submit" class="btn btn-primary">Add question</button>
+          <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+            Add question
+          </button>
         </div>
       </form>
     </div>
   </div>
+  <app-spinner *ngIf="isLoading"></app-spinner>
 </div>

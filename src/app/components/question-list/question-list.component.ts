@@ -8,6 +8,7 @@ import { QuestionService } from 'src/app/shared/services/question.service';
   styleUrls: ['./question-list.component.scss'],
 })
 export class QuestionListComponent implements OnInit {
+  isLoading: boolean = true;
   allQuestions: Question[];
   constructor(public questionService: QuestionService) {}
 
@@ -16,6 +17,9 @@ export class QuestionListComponent implements OnInit {
       .getAllQuestions()
       .then((response) => {
         this.allQuestions = response;
+      })
+      .then(() => {
+        this.isLoading = false;
       })
 
       .catch((error) => {

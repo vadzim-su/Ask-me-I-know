@@ -18,6 +18,8 @@ export class QuestionFormComponent implements OnInit {
   tags: string[] = tags;
   allQuestions: Question[];
   newQuestionInfo: Question;
+  unchecked: boolean = false;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,6 +38,7 @@ export class QuestionFormComponent implements OnInit {
   }
 
   addNewQuestion(): void {
+    this.isLoading = true;
     const newQuestionInfo: Question = {
       ...this.newQuestionForm.value,
       date: +new Date(),
@@ -45,10 +48,21 @@ export class QuestionFormComponent implements OnInit {
       comments: [],
     };
 
-    this.questionService.addNewQuestion(newQuestionInfo);
+    this.questionService.addNewQuestion(newQuestionInfo).then(() => {
+      this.questionService
+        .getAllQuestions()
+        .then(() => (this.isLoading = false));
+    });
 
     $('#exampleModal').modal('toggle');
     this.newQuestionForm.reset();
+    this.unchecked = false;
+  }
+
+  updateQuestions() {
+    this.questionService.getAllQuestions().then((questions) => {
+      this.questionService.allQuestions = questions;
+    });
   }
 
   checkValues(event) {

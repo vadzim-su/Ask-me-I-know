@@ -1,6 +1,17 @@
 <app-single-question
   *ngFor="let question of allQuestions"
   [question]="question"
-  class="w-25"
+  class="w-25 mb-2"
+  routerLink="questions/{{ question.id }}"
 >
 </app-single-question>
+<app-spinner
+  class="position-fixed"
+  style="
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  "
+  *ngIf="isLoading"
+></app-spinner>

@@ -33,7 +33,7 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {
-    path: 'question/:id',
+    path: 'questions/:id',
     component: SingleQuestionComponent,
   },
   { path: '**', redirectTo: 'login' },

@@ -11,7 +11,7 @@
     </p>
   </div>
   <div class="d-flex p-2">
-    <div class="btn card-category" *ngFor="let tag of question['tags']">
+    <div class="btn card-category" *ngFor="let tag of question?.tags">
       {{ tag }}
     </div>
   </div>

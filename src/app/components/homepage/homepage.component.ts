@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import Question from '../../models/question.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { QuestionService } from '../../shared/services/question.service';
 

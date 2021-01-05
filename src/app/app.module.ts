@@ -19,6 +19,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { SingleQuestionComponent } from './components/single-question/single-question.component';
 import { QuestionListComponent } from './components/question-list/question-list.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { QuestionListComponent } from './components/question-list/question-list.
     QuestionFormComponent,
     SingleQuestionComponent,
     QuestionListComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

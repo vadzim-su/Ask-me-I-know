@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DocumentData, QuerySnapshot } from '@angular/fire/firestore';
+import {
+  DocumentData,
+  DocumentReference,
+  QuerySnapshot,
+} from '@angular/fire/firestore';
 import Question from '../../models/question.model';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -13,7 +17,7 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {}
 
-  getAllQuestions() {
+  getAllQuestions(): Promise<Question[]> {
     return firebase
       .firestore()
       .collection('questions')
@@ -31,6 +35,6 @@ export class QuestionService {
       .firestore()
       .collection('questions')
       .add(question)
-      .then((response) => response);
+      .then((question) => question);
   }
 }

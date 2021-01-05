@@ -9,15 +9,15 @@ import { QuestionService } from '../../shared/services/question.service';
   styleUrls: ['./single-question.component.scss'],
 })
 export class SingleQuestionComponent implements OnInit {
-  @Input() question: Question[];
+  @Input() question: Question;
   constructor(
     public questionService: QuestionService,
     public router: Router,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe((params) => {
-      console.log(params);
-    });
+    // this.route.params.subscribe((params) => {
+    //   console.log(params);
+    // });
   }
 
   ngOnInit(): void {}
