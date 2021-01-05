@@ -1,0 +1,17 @@
+.plus {
+  position: fixed;
+  width: 50px;
+  right: 20px;
+  bottom: 50px;
+  cursor: pointer;
+
+  &__add {
+    display: block;
+    transition: 0.2s linear;
+
+    &:hover {
+      transform: scale(1.2);
+      transition: 0.2s linear;
+    }
+  }
+}

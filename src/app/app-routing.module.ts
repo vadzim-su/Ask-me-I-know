@@ -8,7 +8,7 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { SingleQuestionComponent } from './components/single-question/single-question.component';
+import { SeparateQuestionPageComponent } from './components/separate-question-page/separate-question-page.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectAuthorizedToLogin = () => redirectLoggedInTo(['']);
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'questions/:id',
-    component: SingleQuestionComponent,
+    component: SeparateQuestionPageComponent,
   },
   { path: '**', redirectTo: 'login' },
 ];

@@ -1,0 +1,26 @@
+<main class="min-vh-100 py-3 py-md-0 home">
+  <div class="container">
+    <app-header></app-header>
+
+    <div class="dropdown-divider"></div>
+
+    <app-settings-bar></app-settings-bar>
+
+    <!-- <app-question-list
+        class="d-flex flex-wrap align-items-stretch position-relative"
+      ></app-question-list> -->
+
+    <!-- *ngFor="let question of allQuestions"
+      [question]="question" -->
+    <!-- routerLink="questions/id" -->
+    <app-single-question
+      [question]="singleQuestion"
+      class="w-25 mb-2"
+    ></app-single-question>
+
+    <app-plus-button></app-plus-button>
+  </div>
+</main>
+
+<!-- Modal -->
+<app-question-form></app-question-form>

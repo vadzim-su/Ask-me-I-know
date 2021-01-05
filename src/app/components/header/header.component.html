@@ -1,0 +1,36 @@
+<nav
+  class="d-flex justify-content-between align-items-center navbar navbar-expand-lg navbar-light bg-light"
+>
+  <div class="d-flex align-items-center col-sm navbar-title" routerLink="/">
+    <img class="navbar-img" src="../../assets/img/icon.ico" />
+    <a class="navbar-brand">Ask me I know</a>
+  </div>
+
+  <div class="col-sm d-flex justify-content-end align-items-center">
+    <button
+      type="button"
+      class="btn btn-danger navbar-add"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Ask me
+    </button>
+
+    <img class="navbar-photo d-block" src="../../assets/img/icon.ico" alt="" />
+    <span class="navbar-email">{{ userEmail }}</span>
+    <div class="btn-group">
+      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+        <img
+          class="navbar-settings"
+          src="../../assets/img/settings.svg"
+          alt=""
+        />
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="onLogout()">Log out</a>
+      </div>
+    </div>
+  </div>
+</nav>

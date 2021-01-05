@@ -1,0 +1,24 @@
+.navbar {
+  &-title {
+    cursor: pointer;
+  }
+  &-img {
+    width: 50px;
+  }
+  &-photo {
+    width: 50px;
+    border: 1px solid;
+    margin: 0 20px;
+    cursor: pointer;
+  }
+  &-add {
+  }
+  &-brand {
+    font-size: 27px;
+    margin-left: 10px;
+  }
+  &-settings {
+    padding: 0;
+    width: 30px;
+  }
+}

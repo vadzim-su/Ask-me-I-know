@@ -20,6 +20,10 @@ import { QuestionFormComponent } from './components/question-form/question-form.
 import { SingleQuestionComponent } from './components/single-question/single-question.component';
 import { QuestionListComponent } from './components/question-list/question-list.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SettingsBarComponent } from './components/settings-bar/settings-bar.component';
+import { PlusButtonComponent } from './components/plus-button/plus-button.component';
+import { SeparateQuestionPageComponent } from './components/separate-question-page/separate-question-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SingleQuestionComponent,
     QuestionListComponent,
     SpinnerComponent,
+    HeaderComponent,
+    SettingsBarComponent,
+    PlusButtonComponent,
+    SeparateQuestionPageComponent,
   ],
   imports: [
     BrowserModule,

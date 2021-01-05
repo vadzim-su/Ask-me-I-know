@@ -10,13 +10,15 @@ import { QuestionService } from '../../shared/services/question.service';
 })
 export class SingleQuestionComponent implements OnInit {
   @Input() question: Question;
+  // id: string;
   constructor(
     public questionService: QuestionService,
     public router: Router,
     private route: ActivatedRoute
   ) {
     // this.route.params.subscribe((params) => {
-    //   console.log(params);
+    //   this.id = params.id;
+    //   console.log(this.id);
     // });
   }
 
