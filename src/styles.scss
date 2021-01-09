@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-html {
+* {
+  outline: none !important;
+}
+
+body {
   font-family: "Roboto", sans-serif;
+  background-color: #be778247 !important;
 }
 
 .login,

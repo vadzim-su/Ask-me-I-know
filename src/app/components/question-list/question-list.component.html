@@ -1,10 +1,12 @@
-<app-single-question
-  *ngFor="let question of allQuestions"
-  [question]="question"
-  class="w-25 mb-2"
-  routerLink="questions/{{ question.id }}"
->
-</app-single-question>
+<app-settings-bar></app-settings-bar>
+<div class="d-flex flex-wrap position-relative">
+  <app-single-question
+    *ngFor="let question of allQuestions"
+    [question]="question"
+    class="w-25 mb-2"
+  >
+  </app-single-question>
+</div>
 <app-spinner
   class="position-fixed"
   style="
@@ -15,3 +17,5 @@
   "
   *ngIf="isLoading"
 ></app-spinner>
+
+<app-question-form (updateData)="updateQuestions()"></app-question-form>

@@ -9,6 +9,7 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import { SeparateQuestionPageComponent } from './components/separate-question-page/separate-question-page.component';
+import { QuestionListComponent } from './components/question-list/question-list.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectAuthorizedToLogin = () => redirectLoggedInTo(['']);
@@ -31,11 +32,18 @@ const routes: Routes = [
     component: HomepageComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      {
+        path: '',
+        component: QuestionListComponent,
+      },
+      {
+        path: 'questions/:id',
+        component: SeparateQuestionPageComponent,
+      },
+    ],
   },
-  {
-    path: 'questions/:id',
-    component: SeparateQuestionPageComponent,
-  },
+
   { path: '**', redirectTo: 'login' },
 ];
 

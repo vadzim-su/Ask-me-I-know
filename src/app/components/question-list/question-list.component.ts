@@ -13,17 +13,21 @@ export class QuestionListComponent implements OnInit {
   constructor(public questionService: QuestionService) {}
 
   ngOnInit(): void {
+    this.updateQuestions();
+  }
+
+  updateQuestions() {
+    this.isLoading = true;
     this.questionService
-      .getAllQuestions()
-      .then((response) => {
-        this.allQuestions = response;
+      .get()
+      .then((questions) => {
+        this.allQuestions = questions;
       })
       .then(() => {
         this.isLoading = false;
       })
-
       .catch((error) => {
-        console.log('error=', error);
+        console.log(error);
       });
   }
 }

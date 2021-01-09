@@ -1,3 +1,5 @@
+import Comment from './comment.model';
+
 export default class Question {
   author: string;
   date: number;
@@ -5,6 +7,7 @@ export default class Question {
   text: string;
   title: string;
   id?: string;
+  comments: Comment[];
 
   constructor(newQuestionInfo) {
     this.author = newQuestionInfo.author;
@@ -13,5 +16,6 @@ export default class Question {
     this.text = newQuestionInfo.text;
     this.title = newQuestionInfo.title;
     this.id = newQuestionInfo.id;
+    this.comments = newQuestionInfo.comments;
   }
 }

@@ -1,1 +1,1 @@
-export const tags: string[] = ['Frontend', '.NetNetNet', 'Java', 'Salesforce'];
+export const tags: string[] = ['Frontend', '.Net', 'Java', 'Salesforce'];

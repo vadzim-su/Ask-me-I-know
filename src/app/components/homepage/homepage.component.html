@@ -1,18 +1,4 @@
-<main class="min-vh-100 py-3 py-md-0 home">
-  <div class="container">
-    <app-header></app-header>
-
-    <div class="dropdown-divider"></div>
-
-    <app-settings-bar></app-settings-bar>
-
-    <app-question-list
-      class="d-flex flex-wrap align-items-stretch position-relative"
-    ></app-question-list>
-
-    <app-plus-button></app-plus-button>
-  </div>
+<main class="min-vh-100 py-3 py-md-0 home container mt-2">
+  <router-outlet></router-outlet>
+  <app-plus-button></app-plus-button>
 </main>
-
-<!-- Modal -->
-<app-question-form></app-question-form>

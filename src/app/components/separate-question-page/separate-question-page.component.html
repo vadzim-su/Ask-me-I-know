@@ -1,26 +1,70 @@
-<main class="min-vh-100 py-3 py-md-0 home">
-  <div class="container">
-    <app-header></app-header>
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="card-date">
+        {{ singleQuestion?.date | date: "MMM d, y HH:mm" }}
+      </p>
+      <p class="card-user">by {{ singleQuestion?.author }}</p>
+    </div>
+
+    <h2 class="card-title" routerLink="questions/{{ singleQuestion?.id }}">
+      {{ singleQuestion?.title }}
+    </h2>
 
     <div class="dropdown-divider"></div>
-
-    <app-settings-bar></app-settings-bar>
-
-    <!-- <app-question-list
-        class="d-flex flex-wrap align-items-stretch position-relative"
-      ></app-question-list> -->
-
-    <!-- *ngFor="let question of allQuestions"
-      [question]="question" -->
-    <!-- routerLink="questions/id" -->
-    <app-single-question
-      [question]="singleQuestion"
-      class="w-25 mb-2"
-    ></app-single-question>
-
-    <app-plus-button></app-plus-button>
+    <p class="card-text">
+      {{ singleQuestion?.text }}
+    </p>
   </div>
-</main>
+  <div class="d-flex p-2 justify-content-between">
+    <div class="categories d-flex align-self-center">
+      <div class="btn card-category" *ngFor="let tag of singleQuestion?.tags">
+        {{ tag }}
+      </div>
+    </div>
+    <div class="card-admin" *ngIf="isAdmin">
+      <button
+        type="button"
+        class="btn btn-success mr-2"
+        (click)="moderateQuestion()"
+      >
+        Approve
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteQuestion()">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
 
-<!-- Modal -->
-<app-question-form></app-question-form>
+<div class="card-comments">Comments</div>
+
+<div class="card form-group p-4">
+  <p *ngIf="singleQuestion?.comments.length === 0">
+    No comments yet...( Be first to add your comment
+  </p>
+  <div class="card" *ngFor="let comment of singleQuestion?.comments">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-user">{{ comment?.author }}</h5>
+      <p class="card-date">{{ comment?.date | date: "MMM d, y HH:mm" }}</p>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        {{ comment?.text }}
+      </p>
+    </div>
+  </div>
+
+  <form class="form-group" (ngSubmit)="addNewComment()">
+    <label for="exampleFormControlTextarea1">Write your solution here</label>
+    <textarea
+      class="form-control mb-3"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      [formControl]="commentTextForm"
+    ></textarea>
+    <button type="submit" class="btn btn-primary mb-2">Add your comment</button>
+  </form>
+</div>
+
+<div class="btn btn-outline-danger mt-3" routerLink="../../">Back to list</div>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import Question from '../../models/question.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { QuestionService } from '../../shared/services/question.service';
 import { tags } from '../../../assets/data/tags';
+
 declare var $: any;
 
 @Component({
@@ -16,10 +17,10 @@ export class QuestionFormComponent implements OnInit {
   userEmail: string;
   newQuestionForm: FormGroup;
   tags: string[] = tags;
-  allQuestions: Question[];
-  newQuestionInfo: Question;
-  unchecked: boolean = false;
+
   isLoading: boolean = false;
+
+  @Output() updateData = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
@@ -48,21 +49,14 @@ export class QuestionFormComponent implements OnInit {
       comments: [],
     };
 
-    this.questionService.addNewQuestion(newQuestionInfo).then(() => {
-      this.questionService
-        .getAllQuestions()
-        .then(() => (this.isLoading = false));
-    });
-
-    $('#exampleModal').modal('toggle');
-    this.newQuestionForm.reset();
-    this.unchecked = false;
-  }
-
-  updateQuestions() {
-    this.questionService.getAllQuestions().then((questions) => {
-      this.questionService.allQuestions = questions;
-    });
+    this.questionService
+      .create(newQuestionInfo)
+      .then(() => (this.isLoading = false))
+      .then(() => {
+        this.resetForm();
+        $('#exampleModal').modal('toggle');
+        this.updateData.emit('');
+      });
   }
 
   checkValues(event) {
@@ -75,5 +69,15 @@ export class QuestionFormComponent implements OnInit {
       );
       tagsArray.splice(index, 1);
     }
+  }
+
+  resetForm() {
+    this.newQuestionForm.reset();
+    let checkboxes = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    checkboxes.forEach((checkbox: HTMLInputElement) => {
+      checkbox.checked = false;
+    });
   }
 }

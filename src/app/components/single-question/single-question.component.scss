@@ -1,22 +1,14 @@
 .card {
-  height: 350px;
   cursor: pointer;
+  height: 100%;
   // background-image: linear-gradient(
   //     rgba(255, 255, 255, 1),
   //     rgba(255, 255, 255, 0.4)
   //   ),
   //   url("../../../assets/img/not-4.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 80%;
-
-  &-date,
-  &-user {
-    color: #6c757d;
-    font-size: 11px;
-    display: flex;
-    justify-content: flex-end;
-  }
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: 80%;
 
   &-category {
     display: block;
@@ -27,14 +19,33 @@
     outline: none;
   }
 
+  &-date {
+    color: #6c757d;
+    font-size: 11px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &-text {
     font-size: 14px;
     overflow: hidden;
-    max-height: 200px;
+    max-height: 40px;
 
-    background: linear-gradient(180deg, #000000 80%, #ccccccbb);
+    background: linear-gradient(180deg, #000000 50%, #ccccccbb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #000000;
+  }
+
+  &-title {
+    transition: 0.2s linear;
+    &:hover {
+      transition: 0.2s linear;
+      background-color: #e76384;
+    }
+  }
+
+  &-footer {
+    height: 100%;
   }
 }

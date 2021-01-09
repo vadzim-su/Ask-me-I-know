@@ -10,17 +10,26 @@ import { QuestionService } from '../../shared/services/question.service';
 })
 export class SingleQuestionComponent implements OnInit {
   @Input() question: Question;
-  // id: string;
+  isAdmin: boolean = true;
+  id: string;
   constructor(
     public questionService: QuestionService,
     public router: Router,
     private route: ActivatedRoute
-  ) {
-    // this.route.params.subscribe((params) => {
-    //   this.id = params.id;
-    //   console.log(this.id);
-    // });
+  ) {}
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params.id;
   }
 
-  ngOnInit(): void {}
+  moderateQuestion() {
+    console.log('Moderated');
+  }
+
+  deleteQuestion() {
+    console.log('Delete');
+    this.questionService.delete(this.id).then(() => {
+      this.router.navigate(['']);
+    });
+  }
 }

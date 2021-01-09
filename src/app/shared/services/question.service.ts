@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  DocumentData,
-  DocumentReference,
-  QuerySnapshot,
-} from '@angular/fire/firestore';
+import { DocumentData, QuerySnapshot } from '@angular/fire/firestore';
 import Question from '../../models/question.model';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -13,11 +9,9 @@ import 'firebase/firestore';
   providedIn: 'root',
 })
 export class QuestionService {
-  allQuestions: Question[];
+  constructor() {}
 
-  constructor(private http: HttpClient) {}
-
-  getAllQuestions(): Promise<Question[]> {
+  get(): Promise<Question[]> {
     return firebase
       .firestore()
       .collection('questions')
@@ -30,11 +24,41 @@ export class QuestionService {
       });
   }
 
-  addNewQuestion(question) {
+  create(question: Question) {
     return firebase
       .firestore()
       .collection('questions')
       .add(question)
       .then((question) => question);
+  }
+
+  getSeparateQuestionByID(id: string) {
+    return firebase
+      .firestore()
+      .collection('questions')
+      .doc(id)
+      .get()
+      .then((response) => {
+        return response.data();
+      });
+  }
+
+  delete(id: string) {
+    return firebase
+      .firestore()
+      .collection('questions')
+      .doc(id)
+      .delete()
+      .then((response) => {
+        return response;
+      });
+  }
+
+  addComment(id, question): any {
+    return firebase
+      .firestore()
+      .collection('questions')
+      .doc(id)
+      .update(question);
   }
 }
