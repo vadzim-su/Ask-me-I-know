@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Question from '../../models/question.model';
+import Question from '../../shared/interfaces/question.model';
 import { QuestionService } from '../../shared/services/question.service';
 
 @Component({
@@ -14,22 +14,10 @@ export class SingleQuestionComponent implements OnInit {
   id: string;
   constructor(
     public questionService: QuestionService,
-    public router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-  }
-
-  moderateQuestion() {
-    console.log('Moderated');
-  }
-
-  deleteQuestion() {
-    console.log('Delete');
-    this.questionService.delete(this.id).then(() => {
-      this.router.navigate(['']);
-    });
   }
 }

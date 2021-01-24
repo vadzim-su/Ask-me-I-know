@@ -7,7 +7,9 @@ export default class Question {
   text: string;
   title: string;
   id?: string;
+  isModerated: false;
   comments: Comment[];
+  hasSolution: false;
 
   constructor(newQuestionInfo) {
     this.author = newQuestionInfo.author;
@@ -16,6 +18,8 @@ export default class Question {
     this.text = newQuestionInfo.text;
     this.title = newQuestionInfo.title;
     this.id = newQuestionInfo.id;
+    this.isModerated = newQuestionInfo.isModerated;
     this.comments = newQuestionInfo.comments;
+    this.hasSolution = newQuestionInfo.hasSolution;
   }
 }

@@ -9,13 +9,14 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router) {}
-
+  photo: string;
   userEmail: string;
 
   ngOnInit(): void {
     this.authService.getAuthState().subscribe((useremail) => {
       this.userEmail = useremail;
     });
+    this.photo = this.authService.userPhotoDefault;
   }
 
   onLogout(): void {

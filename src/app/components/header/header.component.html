@@ -16,8 +16,8 @@
       Ask me
     </button>
 
-    <img class="navbar-photo d-block" src="../../assets/img/icon.ico" alt="" />
-    <span class="navbar-email">{{ userEmail }}</span>
+    <img class="navbar-photo d-block" src="{{ photo }}" />
+    <span class="navbar-email">{{ userEmail?.split("@")[0] }}</span>
     <div class="btn-group">
       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
         <img
@@ -27,7 +27,7 @@
         />
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" routerLink="profile">Profile</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="onLogout()">Log out</a>
       </div>

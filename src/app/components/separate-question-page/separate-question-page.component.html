@@ -4,13 +4,12 @@
       <p class="card-date">
         {{ singleQuestion?.date | date: "MMM d, y HH:mm" }}
       </p>
-      <p class="card-user">by {{ singleQuestion?.author }}</p>
+      <p class="card-user">by {{ (singleQuestion?.author).split("@")[0] }}</p>
     </div>
 
-    <h2 class="card-title" routerLink="questions/{{ singleQuestion?.id }}">
+    <h2 class="card-title">
       {{ singleQuestion?.title }}
     </h2>
-
     <div class="dropdown-divider"></div>
     <p class="card-text">
       {{ singleQuestion?.text }}
@@ -22,37 +21,85 @@
         {{ tag }}
       </div>
     </div>
-    <div class="card-admin" *ngIf="isAdmin">
+    <div class="card-admin" *ngIf="isAdmin || !singleQuestion?.isModerated">
       <button
+        *ngIf="!singleQuestion?.isModerated"
         type="button"
-        class="btn btn-success mr-2"
-        (click)="moderateQuestion()"
+        class="btn btn-success btn-admin mr-2"
+        (click)="approveQuestion()"
       >
         Approve
       </button>
-      <button type="button" class="btn btn-danger" (click)="deleteQuestion()">
+      <button
+        type="button"
+        class="btn btn-danger btn-admin"
+        (click)="deleteQuestion()"
+      >
         Delete
       </button>
+    </div>
+
+    <div
+      class="card-edit btn btn-danger"
+      *ngIf="
+        singleQuestion?.author === userEmail && !singleQuestion?.isModerated
+      "
+      (click)="editQuestion()"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-pencil"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+        />
+      </svg>
     </div>
   </div>
 </div>
 
+<app-spinner *ngIf="isLoading"></app-spinner>
+
 <div class="card-comments">Comments</div>
 
 <div class="card form-group p-4">
-  <p *ngIf="singleQuestion?.comments.length === 0">
+  <p *ngIf="!singleQuestion?.comments.length">
     No comments yet...( Be first to add your comment
   </p>
+
   <div class="card" *ngFor="let comment of singleQuestion?.comments">
+    <img
+      *ngIf="comment?.isSolution"
+      class="card-background"
+      src="../../../assets/img/solved.png"
+      alt=""
+    />
+
     <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="card-user">{{ comment?.author }}</h5>
       <p class="card-date">{{ comment?.date | date: "MMM d, y HH:mm" }}</p>
     </div>
+
     <div class="card-body">
       <p class="card-text">
         {{ comment?.text }}
       </p>
     </div>
+
+    <button
+      class="btn btn-success card-solution"
+      *ngIf="singleQuestion?.author === userEmail && !comment?.isSolution"
+      (click)="noteSolution(comment)"
+    >
+      It's a solution
+    </button>
   </div>
 
   <form class="form-group" (ngSubmit)="addNewComment()">
@@ -63,8 +110,24 @@
       rows="3"
       [formControl]="commentTextForm"
     ></textarea>
-    <button type="submit" class="btn btn-primary mb-2">Add your comment</button>
+    <button
+      type="submit"
+      class="btn btn-danger mb-2"
+      [disabled]="commentTextForm.invalid"
+    >
+      Add your comment
+    </button>
   </form>
 </div>
 
-<div class="btn btn-outline-danger mt-3" routerLink="../../">Back to list</div>
+<div
+  class="btn btn-outline-danger mt-3 position-fixed btn-back"
+  routerLink="../../"
+>
+  Back to list
+</div>
+
+<app-question-form
+  *ngIf="singleQuestion"
+  [singleQuestion]="singleQuestion"
+></app-question-form>

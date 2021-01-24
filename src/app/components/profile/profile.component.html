@@ -1,0 +1,21 @@
+<div class="card text-center container">
+  <div class="card-body d-flex justify-content-center">
+    <div class="card-photo d-flex">
+      <img src="{{ photo }}" class="card-img-top" alt="..." />
+    </div>
+
+    <div class="card-info">
+      <h5 class="card-title">Email: {{ userEmail }}</h5>
+      <p class="card-text">Username</p>
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="btn btn-outline-danger" routerLink="/">Back to questions</div>

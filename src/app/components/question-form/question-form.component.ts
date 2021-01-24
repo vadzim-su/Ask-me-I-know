@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import Question from '../../models/question.model';
+import Question from '../../shared/interfaces/question.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { QuestionService } from '../../shared/services/question.service';
-import { tags } from '../../../assets/data/tags';
+import { tags } from '../../shared/data/tags';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -14,28 +14,31 @@ declare var $: any;
   styleUrls: ['./question-form.component.scss'],
 })
 export class QuestionFormComponent implements OnInit {
+  @Input() singleQuestion: Question;
+  @Output() updateData = new EventEmitter();
+
   userEmail: string;
   newQuestionForm: FormGroup;
   tags: string[] = tags;
-
   isLoading: boolean = false;
-
-  @Output() updateData = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
     public authService: AuthService,
-    public questionService: QuestionService
-  ) {
-    this.newQuestionForm = this.fb.group({
-      title: ['', [Validators.required]],
-      text: ['', [Validators.required]],
-      tags: fb.array([]),
-    });
-  }
+    public questionService: QuestionService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userEmail = this.authService.userEmail;
+    this.newQuestionForm = this.fb.group({
+      title: [
+        this.singleQuestion ? this.singleQuestion?.title : '',
+        [Validators.required],
+      ],
+      text: [this.singleQuestion?.text || '', [Validators.required]],
+      tags: this.fb.array([]),
+    });
   }
 
   addNewQuestion(): void {
@@ -45,8 +48,8 @@ export class QuestionFormComponent implements OnInit {
       date: +new Date(),
       author: this.authService.userEmail,
       isModerated: false,
-      isResolved: false,
       comments: [],
+      hasSolution: false,
     };
 
     this.questionService
@@ -56,6 +59,9 @@ export class QuestionFormComponent implements OnInit {
         this.resetForm();
         $('#exampleModal').modal('toggle');
         this.updateData.emit('');
+      })
+      .then(() => {
+        this.router.navigate(['']);
       });
   }
 

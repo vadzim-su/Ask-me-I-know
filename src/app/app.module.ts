@@ -24,6 +24,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { SettingsBarComponent } from './components/settings-bar/settings-bar.component';
 import { PlusButtonComponent } from './components/plus-button/plus-button.component';
 import { SeparateQuestionPageComponent } from './components/separate-question-page/separate-question-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { FilterQuestionsPipe } from './shared/pipes/filter.pipe';
+import { FilterService } from './shared/services/filter.service';
+import { SortPipe } from './shared/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,9 @@ import { SeparateQuestionPageComponent } from './components/separate-question-pa
     SettingsBarComponent,
     PlusButtonComponent,
     SeparateQuestionPageComponent,
+    ProfileComponent,
+    FilterQuestionsPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,7 @@ import { SeparateQuestionPageComponent } from './components/separate-question-pa
     NgbModule,
     HttpClientModule,
   ],
-  providers: [AuthService, QuestionService],
+  providers: [AuthService, QuestionService, FilterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

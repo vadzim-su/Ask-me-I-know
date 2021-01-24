@@ -1,6 +1,7 @@
 .card {
   cursor: pointer;
   height: 100%;
+  position: relative;
   // background-image: linear-gradient(
   //     rgba(255, 255, 255, 1),
   //     rgba(255, 255, 255, 0.4)
@@ -37,15 +38,26 @@
     color: #000000;
   }
 
-  &-title {
+  &-header {
     transition: 0.2s linear;
     &:hover {
       transition: 0.2s linear;
-      background-color: #e76384;
+      background-color: #ecd9dc;
     }
   }
 
   &-footer {
     height: 100%;
+  }
+  &-moderated {
+    cursor: text;
+    font-size: 10px;
+    width: 40%;
+  }
+
+  &-checked {
+    position: absolute;
+    width: 50px;
+    opacity: 0.6;
   }
 }

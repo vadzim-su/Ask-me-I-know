@@ -1,21 +1,12 @@
 <app-settings-bar></app-settings-bar>
 <div class="d-flex flex-wrap position-relative">
   <app-single-question
-    *ngFor="let question of allQuestions"
+    *ngFor="let question of allQuestions | filter | sort"
     [question]="question"
     class="w-25 mb-2"
   >
   </app-single-question>
 </div>
-<app-spinner
-  class="position-fixed"
-  style="
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-  "
-  *ngIf="isLoading"
-></app-spinner>
+<app-spinner *ngIf="isLoading"></app-spinner>
 
 <app-question-form (updateData)="updateQuestions()"></app-question-form>

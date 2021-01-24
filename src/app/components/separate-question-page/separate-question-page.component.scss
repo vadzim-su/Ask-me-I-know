@@ -1,5 +1,7 @@
 .card {
   margin-bottom: 20px;
+  position: relative;
+
   &-category {
     display: block;
     margin-left: 5px;
@@ -20,5 +22,30 @@
 
   &-comments {
     font-size: 20px;
+  }
+
+  &-solution {
+    width: 10%;
+    font-size: 12px;
+    margin: 0 5px 5px auto;
+  }
+
+  &-background {
+    position: absolute;
+    width: 100px;
+    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.btn {
+  &-admin {
+    font-size: 12px;
+  }
+  &-back {
+    left: 50px;
+    bottom: 50px;
   }
 }

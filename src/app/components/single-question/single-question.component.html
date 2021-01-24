@@ -1,13 +1,29 @@
 <div class="card p-2">
-  <div class="card-header">
+  <div class="card-header" routerLink="questions/{{ question.id }}">
+    <img
+      class="card-checked"
+      *ngIf="question?.hasSolution"
+      src="../../../assets/img/checked.png"
+      alt=""
+    />
     <p class="card-date">{{ question?.date | date: "MMM d, y HH:mm" }}</p>
 
-    <h5 class="card-title text-center" routerLink="questions/{{ question.id }}">
+    <h5 class="card-title text-center">
       {{ question?.title }}
     </h5>
+    <div
+      *ngIf="!question?.isModerated && isAdmin"
+      class="card-moderated btn btn-secondary btn-sm disabled d-block m-auto"
+    >
+      On moderation
+    </div>
+    <div
+      *ngIf="question?.isModerated && isAdmin"
+      class="card-moderated btn btn-success btn-sm disabled d-block m-auto"
+    >
+      Approved
+    </div>
   </div>
-
-  <!-- <div class="dropdown-divider"></div> -->
 
   <div class="card-footer d-flex">
     <div class="d-flex align-items-end">
@@ -15,20 +31,5 @@
         {{ tag }}
       </div>
     </div>
-
-    <!-- <div class="dropdown-divider"></div> -->
-
-    <!-- <div class="card-admin d-flex p-2 justify-content-center" *ngIf="isAdmin">
-      <button
-        type="button"
-        class="btn btn-success mr-2"
-        (click)="moderateQuestion()"
-      >
-        Approve
-      </button>
-      <button type="button" class="btn btn-danger" (click)="deleteQuestion()">
-        Delete
-      </button>
-    </div> -->
   </div>
 </div>

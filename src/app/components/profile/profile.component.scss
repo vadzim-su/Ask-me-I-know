@@ -1,0 +1,12 @@
+.card {
+  &-photo {
+    width: 150px;
+    height: 150px;
+    margin-right: 50px;
+  }
+
+  &-img-top {
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+}
