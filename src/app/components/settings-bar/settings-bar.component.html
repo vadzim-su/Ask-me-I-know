@@ -26,6 +26,7 @@
               name="questions"
               id="gridRadios{{ i + 1 }}"
               value="{{ question }}"
+              checked
               (change)="handleRadios($event)"
             />
             <label class="form-check-label" for="gridRadios{{ i + 1 }}">
@@ -70,6 +71,7 @@
               name="periods"
               id="periodRadios{{ i + 1 }}"
               value="{{ item }}"
+              checked
               (change)="handleRadios($event)"
             />
             <label class="form-check-label" for="periodRadios{{ i + 1 }}">
@@ -94,6 +96,7 @@
               name="owner"
               id="ownerRadios{{ i + 1 }}"
               value="{{ owner }}"
+              checked
               (change)="handleRadios($event)"
             />
             <label class="form-check-label" for="ownerRadios{{ i + 1 }}">
@@ -118,6 +121,7 @@
               name="moderation"
               id="moderationRadios{{ i + 1 }}"
               value="{{ item }}"
+              checked
               (change)="handleRadios($event)"
             />
             <label class="form-check-label" for="moderationRadios{{ i + 1 }}">
@@ -154,6 +158,7 @@
               name="sort"
               id="sortRadios{{ i + 1 }}"
               value="{{ sort }}"
+              checked
               (change)="handleSorting($event)"
             />
             <label class="form-check-label" for="sortRadios{{ i + 1 }}">
@@ -190,6 +195,8 @@
               name="settingsRadios"
               id="settingsRadios{{ i + 1 }}"
               value="{{ layout }}"
+              checked
+              (change)="changeLayout()"
             />
             <label class="form-check-label" for="settingsRadios{{ i + 1 }}">
               {{ layout }}
@@ -211,6 +218,7 @@
               name="themeRadios"
               id="themeRadios{{ i + 1 }}"
               value="{{ theme }}"
+              checked
             />
             <label class="form-check-label" for="themeRadios{{ i + 1 }}">
               {{ theme }}

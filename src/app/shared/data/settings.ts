@@ -1,4 +1,4 @@
-const layouts: string[] = ['tile', 'string'];
+const layouts: string[] = ['string', 'tile'];
 const themes: string[] = ['dark', 'light'];
 
 export { layouts, themes };

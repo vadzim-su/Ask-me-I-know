@@ -1,2 +1,2 @@
-const sorts = ['new', 'old'];
+const sorts = ['old', 'new'];
 export { sorts };

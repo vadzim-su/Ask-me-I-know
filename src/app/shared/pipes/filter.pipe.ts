@@ -8,7 +8,7 @@ import { tags } from '../data/tags';
   name: 'filter',
   pure: false,
 })
-export class FilterQuestionsPipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
   constructor(
     private filterService: FilterService,
     private authService: AuthService

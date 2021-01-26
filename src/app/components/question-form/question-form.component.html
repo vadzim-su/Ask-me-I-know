@@ -89,7 +89,8 @@
             [disabled]="
               isLoading ||
               newQuestionForm.controls['title'].invalid ||
-              newQuestionForm.controls['text'].invalid
+              newQuestionForm.controls['text'].invalid ||
+              !newQuestionForm.controls['tags'].value.length
             "
           >
             Add question

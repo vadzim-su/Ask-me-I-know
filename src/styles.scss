@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import "~bootstrap/scss/bootstrap";
 
 * {
   outline: none !important;
@@ -111,9 +113,6 @@ body {
   }
 }
 
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
-
 .dropdown-item {
   cursor: pointer;
 }
@@ -129,3 +128,43 @@ textarea {
   transform: translate(-50%, -50%);
   z-index: 5;
 }
+
+// dark {
+//   body{
+//     background-color: #3b2a2a;
+//   }
+
+//   nav{
+//     background-color: #7f7374;
+//   }
+
+// .navbar{
+//   &-brand, &-email, &-settings{
+//     color: #fff;
+//   }
+// }
+// btn-outline-light
+// settings:
+// plus;
+
+// .card{
+//   background-color: #6d6a6a;
+
+//   &-date, &-title{
+//     color:#f8f9fa
+//   }
+
+// &-category{
+//   background-color: #3b2a2a;
+// }
+// &-header:hover{
+//   background-color: #504b4c;
+// }
+
+// &-moderated{
+//   background-color: #131414;
+//   // #104310
+// }
+// }
+
+// }

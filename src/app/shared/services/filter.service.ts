@@ -17,5 +17,7 @@ export class FilterService {
 
   theme: string;
 
+  isLayoutBlock: boolean = true;
+
   constructor() {}
 }

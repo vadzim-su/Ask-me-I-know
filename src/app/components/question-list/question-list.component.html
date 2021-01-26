@@ -3,7 +3,7 @@
   <app-single-question
     *ngFor="let question of allQuestions | filter | sort"
     [question]="question"
-    class="w-25 mb-2"
+    [ngClass]="{ 'w-25': layout, 'mb-2': true, 'w-100': !layout }"
   >
   </app-single-question>
 </div>

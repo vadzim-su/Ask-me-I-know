@@ -37,7 +37,7 @@ export class QuestionFormComponent implements OnInit {
         [Validators.required],
       ],
       text: [this.singleQuestion?.text || '', [Validators.required]],
-      tags: this.fb.array([]),
+      tags: this.fb.array([], Validators.required),
     });
   }
 

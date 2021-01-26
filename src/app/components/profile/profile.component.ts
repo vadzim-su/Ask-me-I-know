@@ -8,12 +8,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  photo: string;
+  defaultPhoto: string;
   userEmail: string;
   constructor(public authService: AuthService, private auth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    this.photo = this.authService.userPhotoDefault;
+    this.defaultPhoto = this.authService.userPhotoDefault;
     this.auth.authState.subscribe((user) => {
       this.userEmail = user?.email;
     });

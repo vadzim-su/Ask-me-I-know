@@ -23,18 +23,18 @@ export class SettingsBarComponent implements OnInit {
   owners: string[] = owners;
   moderation: string[] = moderation;
   sorts: string[] = sorts;
-  layouts: string[] = layouts;
   themes: string[] = themes;
+  layouts: string[] = layouts;
 
   constructor(public filterService: FilterService) {}
 
   ngOnInit(): void {}
 
-  handleRadios(e) {
+  handleRadios(e): void {
     this.filterService.filters[e.target.name] = e.target.value;
   }
 
-  handleCheckboxes(e) {
+  handleCheckboxes(e): void {
     const checkboxesArray = this.filterService.filters.categories;
     if (e.target.checked) {
       checkboxesArray.push(e.target.value);
@@ -46,8 +46,11 @@ export class SettingsBarComponent implements OnInit {
     }
   }
 
-  handleSorting(e) {
+  handleSorting(e): void {
     this.filterService.sort = e.target.value;
-    console.log(this.filterService.sort);
+  }
+
+  changeLayout(): void {
+    this.filterService.isLayoutBlock = !this.filterService.isLayoutBlock;
   }
 }

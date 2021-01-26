@@ -10,6 +10,8 @@ import 'firebase/firestore';
 })
 export class AuthService {
   userEmail: string;
+  enteredUserName: string;
+  photoURL: string;
   userPhotoDefault: string = '../../../assets/img/user.png';
 
   constructor(private auth: AngularFireAuth) {
