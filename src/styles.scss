@@ -9,12 +9,12 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #be778247 !important;
+  background-color: #aaa8a847;
 }
 
 .login,
 .reg {
-  background-color: #be778247;
+  background-color: #aaa8a847;
 
   &__button {
     padding: 13px 20px 12px;
@@ -115,6 +115,10 @@ body {
 
 .dropdown-item {
   cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    transition: all 0.2s ease;
+  }
 }
 
 textarea {
@@ -129,42 +133,97 @@ textarea {
   z-index: 5;
 }
 
-// dark {
-//   body{
-//     background-color: #3b2a2a;
-//   }
+.dark {
+  background-color: #3b2a2a;
+  color: #f8f9fa;
 
-//   nav{
-//     background-color: #7f7374;
-//   }
+  & nav {
+    background-color: #494545 !important;
+  }
 
-// .navbar{
-//   &-brand, &-email, &-settings{
-//     color: #fff;
-//   }
-// }
-// btn-outline-light
-// settings:
-// plus;
+  & .btn {
+    color: #f8f9fa;
 
-// .card{
-//   background-color: #6d6a6a;
+    &-admin {
+      &-approve {
+        background-color: #072907;
+        border-color: #072907;
+      }
+    }
+  }
 
-//   &-date, &-title{
-//     color:#f8f9fa
-//   }
+  .card {
+    background-color: #6d6a6a;
 
-// &-category{
-//   background-color: #3b2a2a;
-// }
-// &-header:hover{
-//   background-color: #504b4c;
-// }
+    &-category {
+      background-color: #3b2a2a !important;
+    }
 
-// &-moderated{
-//   background-color: #131414;
-//   // #104310
-// }
-// }
+    &-header:hover {
+      background-color: #504b4c !important;
+    }
 
-// }
+    &-moderated {
+      &-onmoderation {
+        background-color: #1c1c1c;
+        border-color: #1c1c1c;
+      }
+      &-approved {
+        background-color: #072907;
+        border-color: #072907;
+      }
+    }
+
+    &-date,
+    &-user {
+      color: #f8f9fa !important;
+    }
+  }
+
+  .form-control {
+    background-color: #494545;
+    color: #f8f9fa;
+    &::placeholder {
+      color: #c7cdc7;
+    }
+  }
+
+  .modal {
+    &-header,
+    &-body {
+      background-color: #494545;
+    }
+  }
+
+  & .close {
+    color: #fff;
+  }
+
+  & .dropdown {
+    &-menu {
+      background-color: #6d6a6a;
+      color: #fff !important;
+    }
+    &-item {
+      color: #fff !important;
+      &:hover {
+        background-color: #494545;
+      }
+    }
+  }
+
+  & .login,
+  & .reg {
+    &__picture {
+      border-right: 1px solid rgba(248, 234, 234, 0.8);
+    }
+
+    &__validation {
+      color: #c7cdc7;
+    }
+
+    &__description {
+      color: #c7cdc7;
+    }
+  }
+}

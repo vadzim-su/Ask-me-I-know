@@ -1,9 +1,17 @@
 <app-settings-bar></app-settings-bar>
 <div class="d-flex flex-wrap position-relative">
   <app-single-question
-    *ngFor="let question of allQuestions | filter | sort"
+    class="mb-2"
+    *ngFor="
+      let question of allQuestions
+        | filter: filterService.filters:authService.userEmail
+        | sort: filterService.sort
+    "
     [question]="question"
-    [ngClass]="{ 'w-25': layout, 'mb-2': true, 'w-100': !layout }"
+    [ngClass]="{
+      'w-25': filterService.isLayoutBlock,
+      'w-100': !filterService.isLayoutBlock
+    }"
   >
   </app-single-question>
 </div>

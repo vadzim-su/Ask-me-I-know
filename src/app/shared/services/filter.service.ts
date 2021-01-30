@@ -15,7 +15,7 @@ export class FilterService {
 
   sort: string = 'new';
 
-  theme: string;
+  isDarkTheme: boolean = false;
 
   isLayoutBlock: boolean = true;
 

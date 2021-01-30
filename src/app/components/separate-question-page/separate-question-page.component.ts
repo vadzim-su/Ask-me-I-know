@@ -17,7 +17,7 @@ import Question from 'src/app/shared/interfaces/question.model';
 export class SeparateQuestionPageComponent implements OnInit {
   id: string;
   isLoading: boolean = true;
-  isAdmin: boolean = true;
+  isAdmin: boolean;
   singleQuestion: Question;
   commentTextForm: FormControl;
   userEmail: string;
@@ -51,6 +51,8 @@ export class SeparateQuestionPageComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
+
+    this.isAdmin = this.authService.isAdmin;
   }
 
   addNewComment() {
@@ -87,6 +89,4 @@ export class SeparateQuestionPageComponent implements OnInit {
       comments: this.singleQuestion.comments,
     });
   }
-
-  editQuestion() {}
 }

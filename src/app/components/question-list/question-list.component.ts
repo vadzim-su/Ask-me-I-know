@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Question from 'src/app/shared/interfaces/question.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { QuestionService } from 'src/app/shared/services/question.service';
 
@@ -11,10 +12,11 @@ import { QuestionService } from 'src/app/shared/services/question.service';
 export class QuestionListComponent implements OnInit {
   isLoading: boolean = true;
   allQuestions: Question[];
-  layout: boolean = this.filterService.isLayoutBlock;
+  // layout: boolean = this.filterService.isLayoutBlock;
   constructor(
     public questionService: QuestionService,
-    public filterService: FilterService
+    public filterService: FilterService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {

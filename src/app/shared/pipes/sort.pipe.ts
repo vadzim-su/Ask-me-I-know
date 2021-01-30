@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { questions } from '../data/filters';
+import { sorts } from '../data/sorts';
 import Question from '../interfaces/question.model';
-import { FilterService } from '../services/filter.service';
 
 @Pipe({
   name: 'sort',
   pure: false,
 })
 export class SortPipe implements PipeTransform {
-  constructor(private filterService: FilterService) {}
-  transform(questions: Question[], ...args: unknown[]): Question[] {
-    if (this.filterService.sort === 'new') {
+  constructor() {}
+  transform(questions: Question[], sort: string): Question[] {
+    const [, newQuestions] = sorts;
+    if (sort === newQuestions) {
       return questions?.sort((a, b) => b.date - a.date);
     } else {
       return questions?.sort((a, b) => a.date - b.date);

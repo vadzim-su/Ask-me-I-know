@@ -21,18 +21,18 @@
         {{ tag }}
       </div>
     </div>
-    <div class="card-admin" *ngIf="isAdmin || !singleQuestion?.isModerated">
+    <div class="card-admin" *ngIf="isAdmin">
       <button
         *ngIf="!singleQuestion?.isModerated"
         type="button"
-        class="btn btn-success btn-admin mr-2"
+        class="btn btn-success btn-admin btn-admin-approve mr-2"
         (click)="approveQuestion()"
       >
         Approve
       </button>
       <button
         type="button"
-        class="btn btn-danger btn-admin"
+        class="btn btn-danger btn-admin btn-admin-delete"
         (click)="deleteQuestion()"
       >
         Delete
@@ -67,9 +67,8 @@
 
 <app-spinner *ngIf="isLoading"></app-spinner>
 
-<div class="card-comments">Comments</div>
-
-<div class="card form-group p-4">
+<div class="card-comments" *ngIf="singleQuestion?.isModerated">Comments</div>
+<div class="card form-group p-4" *ngIf="singleQuestion?.isModerated">
   <p *ngIf="!singleQuestion?.comments.length">
     No comments yet...( Be first to add your comment
   </p>
@@ -78,7 +77,7 @@
     <img
       *ngIf="comment?.isSolution"
       class="card-background"
-      src="../../../assets/img/solved.png"
+      src="../../../assets/img/solved_transp.png"
       alt=""
     />
 
@@ -105,7 +104,7 @@
   <form class="form-group" (ngSubmit)="addNewComment()">
     <label for="exampleFormControlTextarea1">Write your solution here</label>
     <textarea
-      class="form-control mb-3"
+      class="form-control mb-3 card-area"
       id="exampleFormControlTextarea1"
       rows="3"
       [formControl]="commentTextForm"

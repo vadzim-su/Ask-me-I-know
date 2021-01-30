@@ -218,7 +218,8 @@
               name="themeRadios"
               id="themeRadios{{ i + 1 }}"
               value="{{ theme }}"
-              checked
+              checked="!filterService.isDarkTheme"
+              (change)="changeTheme()"
             />
             <label class="form-check-label" for="themeRadios{{ i + 1 }}">
               {{ theme }}

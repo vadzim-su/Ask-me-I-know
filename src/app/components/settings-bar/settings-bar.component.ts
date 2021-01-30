@@ -53,4 +53,8 @@ export class SettingsBarComponent implements OnInit {
   changeLayout(): void {
     this.filterService.isLayoutBlock = !this.filterService.isLayoutBlock;
   }
+
+  changeTheme() {
+    this.filterService.isDarkTheme = !this.filterService.isDarkTheme;
+  }
 }

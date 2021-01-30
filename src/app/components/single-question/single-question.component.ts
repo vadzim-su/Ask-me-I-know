@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import Question from '../../shared/interfaces/question.model';
 import { QuestionService } from '../../shared/services/question.service';
 
@@ -10,14 +11,18 @@ import { QuestionService } from '../../shared/services/question.service';
 })
 export class SingleQuestionComponent implements OnInit {
   @Input() question: Question;
-  isAdmin: boolean = true;
+  isAdmin: boolean;
+  userEmail: string;
   id: string;
   constructor(
     public questionService: QuestionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
+    this.isAdmin = this.authService.isAdmin;
+    this.userEmail = this.authService.userEmail;
   }
 }
