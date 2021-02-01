@@ -26,6 +26,7 @@ export class SettingsBarComponent implements OnInit {
   sorts: string[] = sorts;
   themes: string[] = themes;
   layouts: string[] = layouts;
+  isLayoutBlock: boolean = true;
 
   constructor(
     public filterService: FilterService,
@@ -58,7 +59,7 @@ export class SettingsBarComponent implements OnInit {
     this.filterService.isLayoutBlock = !this.filterService.isLayoutBlock;
   }
 
-  changeTheme() {
+  changeTheme(): void {
     this.filterService.isDarkTheme = !this.filterService.isDarkTheme;
   }
 }
