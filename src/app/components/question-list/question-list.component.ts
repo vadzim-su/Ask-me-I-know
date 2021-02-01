@@ -12,7 +12,6 @@ import { QuestionService } from 'src/app/shared/services/question.service';
 export class QuestionListComponent implements OnInit {
   isLoading: boolean = true;
   allQuestions: Question[];
-  // layout: boolean = this.filterService.isLayoutBlock;
   constructor(
     public questionService: QuestionService,
     public filterService: FilterService,

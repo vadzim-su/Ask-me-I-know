@@ -6,7 +6,7 @@
 
     <div class="card-info">
       <h2 class="card-text">Personal data</h2>
-      <h5 class="card-title"><b>Email:</b> {{ userEmail }}</h5>
+      <h5 class="card-title"><b>Email:</b> {{ authService.userEmail }}</h5>
       <h5 class="card-title"><b>Asked questions:</b> {{ userQuestions }}</h5>
       <!-- <label for="enteredUserName">Change username</label>
       <input
@@ -25,5 +25,4 @@
     </div>
   </div>
 </div>
-
 <div class="btn btn-outline-danger" routerLink="/">Back to list</div>

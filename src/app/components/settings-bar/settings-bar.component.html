@@ -106,7 +106,7 @@
         </div>
       </div>
 
-      <div class="on-moderation">
+      <div class="on-moderation" *ngIf="authService.isAdmin">
         <legend class="col-form-label pt-0">
           <b>Questions for admin:</b>
         </legend>
@@ -121,9 +121,9 @@
               name="moderation"
               id="moderationRadios{{ i + 1 }}"
               value="{{ item }}"
-              checked
               (change)="handleRadios($event)"
             />
+            <!-- checked="false" -->
             <label class="form-check-label" for="moderationRadios{{ i + 1 }}">
               {{ item }}
             </label>

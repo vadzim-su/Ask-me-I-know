@@ -13,11 +13,5 @@ export class AppComponent implements OnInit {
     public filterService: FilterService
   ) {}
 
-  userEmail: string;
-
-  ngOnInit(): void {
-    this.authService.getAuthState().subscribe((useremail) => {
-      this.userEmail = useremail;
-    });
-  }
+  ngOnInit(): void {}
 }

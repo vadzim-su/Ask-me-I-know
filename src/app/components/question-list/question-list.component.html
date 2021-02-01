@@ -1,19 +1,27 @@
 <app-settings-bar></app-settings-bar>
 <div class="d-flex flex-wrap position-relative">
-  <app-single-question
-    class="mb-2"
+  <ng-container
     *ngFor="
       let question of allQuestions
         | filter: filterService.filters:authService.userEmail
         | sort: filterService.sort
     "
-    [question]="question"
-    [ngClass]="{
-      'w-25': filterService.isLayoutBlock,
-      'w-100': !filterService.isLayoutBlock
-    }"
   >
-  </app-single-question>
+    <app-single-question
+      *ngIf="
+        authService.isAdmin ||
+        question?.isModerated ||
+        question?.author === authService.userEmail
+      "
+      class="mb-2"
+      [question]="question"
+      [ngClass]="{
+        'w-25': filterService.isLayoutBlock,
+        'w-100': !filterService.isLayoutBlock
+      }"
+    >
+    </app-single-question>
+  </ng-container>
 </div>
 <app-spinner *ngIf="isLoading"></app-spinner>
 

@@ -9,15 +9,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   defaultPhoto: string;
-  userEmail: string;
   userQuestions: number | string;
   constructor(public authService: AuthService, private auth: AngularFireAuth) {}
 
   ngOnInit(): void {
     this.defaultPhoto = this.authService.userPhotoDefault;
-    this.auth.authState.subscribe((user) => {
-      this.userEmail = user?.email;
-    });
     this.userQuestions = this.userQuestions || '-';
   }
 }

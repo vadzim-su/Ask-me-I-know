@@ -17,10 +17,8 @@ import Question from 'src/app/shared/interfaces/question.model';
 export class SeparateQuestionPageComponent implements OnInit {
   id: string;
   isLoading: boolean = true;
-  isAdmin: boolean;
   singleQuestion: Question;
   commentTextForm: FormControl;
-  userEmail: string;
 
   constructor(
     public questionService: QuestionService,
@@ -30,10 +28,6 @@ export class SeparateQuestionPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getAuthState().subscribe((useremail) => {
-      this.userEmail = useremail;
-    });
-
     this.commentTextForm = new FormControl(null, [
       Validators.required,
       Validators.minLength(2),
@@ -51,8 +45,6 @@ export class SeparateQuestionPageComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       });
-
-    this.isAdmin = this.authService.isAdmin;
   }
 
   addNewComment() {

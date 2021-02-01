@@ -21,7 +21,7 @@
         {{ tag }}
       </div>
     </div>
-    <div class="card-admin" *ngIf="isAdmin">
+    <div class="card-admin" *ngIf="authService.isAdmin">
       <button
         *ngIf="!singleQuestion?.isModerated"
         type="button"
@@ -42,9 +42,9 @@
     <div
       class="card-edit btn btn-danger"
       *ngIf="
-        singleQuestion?.author === userEmail && !singleQuestion?.isModerated
+        singleQuestion?.author === authService.userEmail &&
+        !singleQuestion?.isModerated
       "
-      (click)="editQuestion()"
       data-toggle="modal"
       data-target="#exampleModal"
     >

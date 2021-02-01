@@ -24,7 +24,6 @@ export class QuestionFormComponent implements OnInit {
   @Input() allQuestions: Question[];
   @Output() updateData = new EventEmitter();
 
-  userEmail: string;
   newQuestionForm: FormGroup;
   tags: string[] = tags;
   isLoading: boolean = false;
@@ -38,28 +37,14 @@ export class QuestionFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userEmail = this.authService.userEmail;
     this.newQuestionForm = this.fb.group({
       title: [this.singleQuestion?.title, [Validators.required]],
       text: [this.singleQuestion?.text, [Validators.required]],
-      tags: this.fb.array(
-        // this.singleQuestion.tags.map((tag) => this.checkedCategories(tag)),
-        [],
-        Validators.required
-      ),
+      tags: this.fb.array([], Validators.required),
     });
-    // console.log(this.newQuestionForm.controls.tags.value);
-    // console.log(this.singleQuestion);
-    // const tags = this.newQuestionForm.controls.tags as FormArray;
-    // console.log(tags);
-    // this.contacts.map(contact => this.createContact(contact))
-    // this.singleQuestion?.tags.value.map((tag) => tags.push(new FormControl(tag)));
-    // tags.value.map((tag) => tags.push(new FormControl(tag)));
-    // console.log(maincolor);
-  }
 
-  checkedCategories(tag): FormArray {
-    return this.fb.array([tag]);
+    const tags = this.newQuestionForm.controls.tags as FormArray;
+    this.singleQuestion?.tags.map((tag) => tags.push(new FormControl(tag)));
   }
 
   addNewQuestion(): void {
@@ -85,7 +70,7 @@ export class QuestionFormComponent implements OnInit {
     }
   }
 
-  checkValues(event) {
+  checkValues(event): void {
     let tagsArray = this.newQuestionForm.value['tags'];
     if (event.target.checked) {
       tagsArray.push(event.target.value);
@@ -97,7 +82,7 @@ export class QuestionFormComponent implements OnInit {
     }
   }
 
-  resetForm() {
+  resetForm(): void {
     this.newQuestionForm.reset();
     let checkboxes = document.querySelectorAll(
       'input[type="checkbox"]:checked'
@@ -108,10 +93,15 @@ export class QuestionFormComponent implements OnInit {
   }
 
   closeQuestionForm(): void {
-    (this.isLoading = false), this.resetForm();
+    this.isLoading = false;
+    this.resetForm();
     $('#exampleModal').modal('toggle');
     this.updateData.emit('');
 
     this.router.navigate(['']);
+  }
+
+  isChecked(tag: string): boolean {
+    return this.singleQuestion?.tags.includes(tag);
   }
 }

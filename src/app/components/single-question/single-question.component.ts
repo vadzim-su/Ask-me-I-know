@@ -11,8 +11,6 @@ import { QuestionService } from '../../shared/services/question.service';
 })
 export class SingleQuestionComponent implements OnInit {
   @Input() question: Question;
-  isAdmin: boolean;
-  userEmail: string;
   id: string;
   constructor(
     public questionService: QuestionService,
@@ -22,7 +20,5 @@ export class SingleQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
-    this.isAdmin = this.authService.isAdmin;
-    this.userEmail = this.authService.userEmail;
   }
 }

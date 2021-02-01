@@ -10,12 +10,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class HeaderComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router) {}
   defaultPhoto: string;
-  userEmail: string;
 
   ngOnInit(): void {
-    this.authService.getAuthState().subscribe((useremail) => {
-      this.userEmail = useremail;
-    });
     this.defaultPhoto = this.authService.userPhotoDefault;
   }
 

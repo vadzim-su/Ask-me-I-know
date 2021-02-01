@@ -17,7 +17,7 @@
     </button>
 
     <img class="navbar-photo d-block" src="{{ defaultPhoto }}" />
-    <span class="navbar-email">{{ userEmail?.split("@")[0] }}</span>
+    <span class="navbar-email">{{ authService.userEmail?.split("@")[0] }}</span>
     <div class="btn-group">
       <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
         <svg

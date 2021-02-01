@@ -1,7 +1,4 @@
-<div
-  class="card p-2"
-  *ngIf="question?.isModerated || isAdmin || question?.author === userEmail"
->
+<div class="card p-2">
   <div class="card-header" routerLink="questions/{{ question.id }}">
     <img
       class="card-checked"
@@ -15,7 +12,9 @@
     <h5 class="card-title text-center">
       {{ question?.title }}
     </h5>
-    <div *ngIf="isAdmin || question?.author === userEmail">
+    <div
+      *ngIf="authService.isAdmin || question?.author === authService.userEmail"
+    >
       <div
         *ngIf="!question?.isModerated"
         class="card-moderated card-moderated-onmoderation btn btn-secondary btn-sm disabled d-block m-auto"

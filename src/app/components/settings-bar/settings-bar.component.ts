@@ -9,6 +9,7 @@ import {
 import { sorts } from '../../shared/data/sorts';
 import { layouts, themes } from '../../shared/data/settings';
 import { FilterService } from 'src/app/shared/services/filter.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-settings-bar',
@@ -26,15 +27,18 @@ export class SettingsBarComponent implements OnInit {
   themes: string[] = themes;
   layouts: string[] = layouts;
 
-  constructor(public filterService: FilterService) {}
+  constructor(
+    public filterService: FilterService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
-  handleRadios(e): void {
+  handleRadios(e: any): void {
     this.filterService.filters[e.target.name] = e.target.value;
   }
 
-  handleCheckboxes(e): void {
+  handleCheckboxes(e: any): void {
     const checkboxesArray = this.filterService.filters.categories;
     if (e.target.checked) {
       checkboxesArray.push(e.target.value);
@@ -46,7 +50,7 @@ export class SettingsBarComponent implements OnInit {
     }
   }
 
-  handleSorting(e): void {
+  handleSorting(e: any): void {
     this.filterService.sort = e.target.value;
   }
 
